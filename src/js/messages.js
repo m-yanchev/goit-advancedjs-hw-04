@@ -12,11 +12,20 @@ const COMMON_PROPS = {
   maxWidth: '432px',
 };
 
-export const showErrorMessage = message => {
+export const showError = message => {
   iziToast.error({
     ...COMMON_PROPS,
     title: '',
     message: message,
     backgroundColor: '#ef4040',
+  });
+};
+
+export const showInfo = message => {
+  iziToast.info({
+    ...COMMON_PROPS,
+    title: '',
+    message: message,
+    backgroundColor: '#3498db',
   });
 };

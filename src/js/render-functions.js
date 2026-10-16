@@ -8,11 +8,12 @@ const lightbox = new SimpleLightbox('.gallery-link', {
 
 const refs = {
   gallery: document.querySelector('.gallery'),
-  loader: document.querySelector('.loader')
+  loader: document.querySelector('.loader-wrapper'),
+  loadMoreButton: document.querySelector('.load-more'),
 };
 
 export const createGallery = images => {
-  refs.gallery.innerHTML = images.map(({
+  const markup = images.map(({
     largeImageURL, webformatURL, tags, likes, views, comments, downloads
   }) => `
     <li class="gallery-item">
@@ -41,9 +42,9 @@ export const createGallery = images => {
           </li>
         </ul>
   	  </a>
-
     </li>
   `).join('');
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 
   lightbox.refresh();
 }
@@ -58,4 +59,12 @@ export const showLoader = () => {
 
 export const hideLoader = () => {
   refs.loader.classList.add('is-hidden');
+}
+
+export const showLoadMoreButton = () => {
+  refs.loadMoreButton.classList.remove('is-hidden');
+}
+
+export const hideLoadMoreButton = () => {
+  refs.loadMoreButton.classList.add('is-hidden');
 }
